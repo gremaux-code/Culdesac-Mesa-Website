@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Culdesac Mesa — Creating Beauty in the Everyday</title>
+  <meta name="description" content="Culdesac Mesa is a walkable, mixed-use neighborhood in Downtown Mesa. 1,000 homes, local shops, and community spaces." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sage: #7BAE7F;
+      --sage-dark: #5A8F5E;
+      --sage-light: #E8F0E8;
+      --sand: #F5F0E8;
+      --sand-dark: #E8DFD0;
+      --terracotta: #C67D5B;
+      --charcoal: #2C2C2C;
+      --warm-gray: #6B6560;
+      --off-white: #FAFAF7;
+      --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--charcoal); -webkit-font-smoothing: antialiased; }
+
+    /* ---- NAV ---- */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,250,247,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--sand-dark); padding: 0 24px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--sage-dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 12px; font-weight: 500; text-transform: uppercase; color: var(--warm-gray); text-decoration: none; border-bottom: 2px solid transparent; transition: all 0.2s ease; }
+    .nav-links a.active, .nav-links a:hover { color: var(--sage-dark); border-bottom-color: var(--sage); }
+
+    /* ---- HERO ---- */
+    #hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(165deg, var(--off-white) 0%, var(--sage-light) 50%, var(--sand) 100%); padding: 100px 24px 60px; text-align: center; position: relative; overflow: hidden; }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 7vw, 72px); font-weight: 700; line-height: 1.05; margin-bottom: 36px; }
+    .hero-content h1 span { color: var(--sage); }
+    .btn-primary { background: var(--sage); color: var(--white); padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; transition: background 0.2s; }
+    .btn-outline { border: 2px solid var(--charcoal); color: var(--charcoal); padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.2s; }
+
+    /* ---- CAROUSEL ---- */
+    .carousel-section { position: relative; padding: 20px 0; overflow: hidden; background: var(--white); }
+    .carousel-track { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 0 24px; }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-track img { flex: 0 0 auto; width: 320px; height: 240px; object-fit: cover; border-radius: 8px; }
+
+    /* ---- SECTIONS ---- */
+    section { padding: 100px 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; }
+    .section-heading { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 24px; }
+    .section-body { font-size: 17px; line-height: 1.8; color: var(--warm-gray); max-width: 640px; }
+
+    /* ---- ABOUT/TEMPE GRID ---- */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .about-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .about-photos img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; }
+    .offset-down { margin-top: 24px; }
+    .offset-up { margin-top: -24px; }
+
+    /* ---- EVENTS & LOG ---- */
+    #events { background: var(--sand); }
+    .events-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; margin-top: 32px; }
+    .event-card { background: var(--white); border-radius: 12px; padding: 24px; border: 1px solid var(--sand-dark); margin-bottom: 16px; }
+    .event-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--sage-dark); background: var(--sage-light); padding: 4px 8px; border-radius: 4px; }
+    .log-item { padding-bottom: 16px; border-bottom: 1px solid var(--sand-dark); margin-bottom: 16px; }
+
+    /* ---- SIGNUP ---- */
+    #signup { background: var(--charcoal); color: var(--white); }
+    .signup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .signup-box input { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #444; background: #333; color: white; margin-bottom: 12px; }
+    .signup-box button { width: 100%; padding: 12px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; }
+
+    @media (max-width: 768px) {
+        .about-grid, .events-grid, .signup-grid { grid-template-columns: 1fr; }
+        .offset-up, .offset-down { margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">CULDESAC MESA</a>
+    <div class="nav-links">
+      <a href="#vision">Vision</a>
+      <a href="#events">Events</a>
+      <a href="#tempe">Our Track Record</a>
+      <a href="#involved">Feedback</a>
+      <a href="#planned">Plans</a>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-content">
+    <div class="section-label">A New Neighborhood in Downtown Mesa</div>
+    <h1>Creating Beauty<br><span>in the Everyday</span></h1>
+    <div class="hero-ctas">
+      <a href="#involved" class="btn-primary">Share Your Feedback</a>
+      <a href="#signup" class="btn-outline">Join the Interest List</a>
+    </div>
+  </div>
+</section>
+
+<div class="carousel-section">
+  <div class="carousel-track">
+    <img src="assets/culdesac-mesa-link-1.jpg" alt="Downtown Mesa">
+    <img src="assets/culdesac-mesa-link-2.jpg" alt="Culdesac Mesa rendering">
+    <img src="assets/culdesac-mesa-link-3.jpg" alt="Community space">
+    <img src="assets/culdesac-mesa-link-4.jpg" alt="Walkable streetscape">
+    <img src="assets/culdesac-mesa-link-5.jpg" alt="Local culture">
+  </div>
+</div>
+
+<section id="vision">
+  <div class="container">
+    <div class="section-label">Our Vision</div>
+    <h2 class="section-heading">Community lives in the shared spaces that shape our days</h2>
+    <p class="section-body">Walking to coffee. Seeing neighbors. Sitting in the shade. Culdesac Mesa is designed to make these moments the norm. We're building a neighborhood where life happens at a human scale, directly connected to the energy of Downtown Mesa.</p>
+  </div>
+</section>
+
+<section id="events">
+  <div class="container">
+    <div class="section-label">Events & Updates</div>
+    <h2 class="section-heading">Come say hello</h2>
+    <div class="events-grid">
+      <div>
+        <div class="event-card">
+          <span class="event-tag">Community Feedback</span>
+          <h3 style="margin: 8px 0;">Second Saturdays at Culdesac Tempe</h3>
+          <p style="font-size: 14px; color: var(--warm-gray);">📍 2025 E Apache Blvd, Tempe</p>
+          <p style="font-size: 14px; margin-top: 8px;">Mesa neighbors: Come see what we built in Tempe! Tour the car-free neighborhood, grab a coffee, and share your thoughts on the Mesa project in person.</p>
+        </div>
+        <div class="event-card">
+          <span class="event-tag">Open House</span>
+          <h3 style="margin: 8px 0;">Community Design Session</h3>
+          <p style="font-size: 14px; color: var(--warm-gray);">📍 Petal House (Downtown Mesa) — Q2 2026</p>
+        </div>
+      </div>
+      <div class="project-log">
+        <h3 style="font-size: 18px; margin-bottom: 20px;">Project Log</h3>
+        <div class="log-item">
+          <p style="font-size: 11px; color: var(--sage); font-weight: 700;">APRIL 2026</p>
+          <p style="font-size: 15px; font-weight: 600;">Site 17 Design Concepts Shared</p>
+          <a href="#" style="font-size: 13px; color: var(--sage-dark); text-decoration: none;">View Presentation →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tempe" style="background: var(--white);">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-label">Our Track Record</div>
+        <h2 class="section-heading">What we built in Tempe</h2>
+        <p style="margin-bottom: 20px; line-height: 1.8; color: var(--warm-gray);">We built Culdesac Tempe — the first car-free neighborhood built from scratch in the U.S. It is now a thriving community home to over 350 residents and 23 local businesses directly on the light rail.</p>
+        <p style="line-height: 1.8; color: var(--warm-gray);"><strong>Come check us out:</strong> Visit our retail square, grab a drink at the Cocina Chiwas, or join us for a market. We're showing that walkable, transit-oriented living isn't just a concept—it's already here in the Valley.</p>
+      </div>
+      <div class="about-photos">
+        <img src="assets/culdesac-mesa-link-1.jpg" alt="Tempe street">
+        <img src="assets/culdesac-mesa-link-3.jpg" alt="Tempe plaza" class="offset-down">
+        <img src="assets/culdesac-mesa-link-2.jpg" alt="Tempe retail" class="offset-up">
+        <img src="assets/culdesac-mesa-link-5.jpg" alt="Tempe community">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="involved">
+  <div class="container">
+    <div class="section-label">Your Voice</div>
+    <h2 class="section-heading">Shape the future of Site 17</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px;">
+      <div style="background: var(--sage); color: white; padding: 40px; border-radius: 16px;">
+        <h3>Community Survey</h3>
+        <p style="margin: 16px 0 24px; opacity: 0.9;">Tell us what shops and spaces you want to see. Your input goes directly into our planning process.</p>
+        <a href="#" style="background: white; color: var(--sage-dark); padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600;">Start Survey →</a>
+      </div>
+      <div style="background: var(--off-white); border: 1px solid var(--sand-dark); padding: 40px; border-radius: 16px;">
+        <h3>Direct Feedback</h3>
+        <p style="margin: 16px 0 24px; color: var(--warm-gray);">Questions or ideas? We read every message and include community input in our reports.</p>
+        <a href="mailto:mesa@culdesac.com" style="color: var(--sage-dark); font-weight: 700; text-decoration: none;">mesa@culdesac.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="signup">
+  <div class="container">
+    <div class="signup-grid">
+      <div class="signup-box">
+        <div class="section-label" style="color: var(--sage-light);">Stay Informed</div>
+        <h3 style="margin: 12px 0;">Project Notifications</h3>
+        <input type="email" placeholder="your@email.com">
+        <button style="background: var(--sage); color: white;">Subscribe</button>
+      </div>
+      <div class="signup-box">
+        <div class="section-label" style="color: var(--terracotta);">Phase 1 Sales</div>
+        <h3 style="margin: 12px 0;">Townhome Interest List</h3>
+        <input type="email" placeholder="your@email.com">
+        <button style="background: var(--terracotta); color: white;">Join List</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display: flex; justify-content: space-between; padding: 40px 0; font-size: 12px; color: #666;">
+    <p>© 2026 Culdesac Inc. · Downtown Mesa, AZ</p>
+    <a href="https://culdesac.com" style="color: #888; text-decoration: none;">culdesac.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
