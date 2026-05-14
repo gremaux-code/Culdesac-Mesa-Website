@@ -218,7 +218,7 @@
 
     /* ---- SECTION PADDING (fluid) ---- */
     #vision, #about, #planned, #interim, #background,
-    #involved, #events, #signup {
+    #involved, #events, #signup, #quick-comment {
       padding: clamp(48px, 6vw, 80px) clamp(16px, 3vw, 24px);
     }
 
@@ -538,6 +538,60 @@
     .signup-success.sage { color: var(--sage); }
     .signup-success.terra { color: var(--terracotta); }
 
+    /* ---- QUICK COMMENT ---- */
+    #quick-comment { background: var(--sand); }
+    .inline-link {
+      color: var(--sage-dark); font-weight: 600;
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+    .inline-link:hover { color: var(--sage); }
+    .comment-form {
+      display: grid; gap: 16px;
+      max-width: 640px;
+      margin-top: 32px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .form-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .form-field label {
+      font-size: 13px; font-weight: 500;
+      color: var(--charcoal); line-height: 1.4;
+    }
+    .form-field .req { color: var(--terracotta); }
+    .form-field input, .form-field textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 12px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--sand-dark);
+      background: var(--white);
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.2s ease;
+      min-width: 0; width: 100%;
+    }
+    .form-field input:focus, .form-field textarea:focus {
+      border-color: var(--sage);
+    }
+    .form-field textarea { resize: vertical; min-height: 80px; font-family: inherit; }
+    .comment-form button {
+      justify-self: start;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+    .comment-success {
+      margin-top: 24px;
+      font-size: 14px; line-height: 1.7;
+      color: var(--sage-dark); font-weight: 500;
+      padding: 16px 20px;
+      background: var(--sage-light);
+      border-radius: 10px;
+      max-width: 640px;
+    }
+
     /* ---- FOOTER ---- */
     footer {
       background: var(--charcoal); border-top: 1px solid #444;
@@ -656,9 +710,9 @@
     <div class="involve-grid">
       <div class="involve-card survey">
         <div class="icon">💬</div>
-        <h3>Take the Community Survey</h3>
-        <p>Share your thoughts on what matters most. Your input will be included in our community participation report.</p>
-        <a href="https://surveymonkey.com/placeholder" target="_blank" rel="noopener noreferrer" class="btn-white">Start the Survey →</a>
+        <h3>Share your thoughts</h3>
+        <p>Tell us what matters most. Your input will be included in our community participation report.</p>
+        <a href="#quick-comment" class="btn-white">Share your thoughts →</a>
       </div>
       <div class="involve-card email-card">
         <div class="icon">✉️</div>
@@ -906,9 +960,49 @@
     </div>
   </div>
 </section>
+<!-- QUICK COMMENT -->
+<section id="quick-comment">
+  <div class="container">
+    <div class="section-label">Quick Comment</div>
+    <h2 class="section-heading" style="font-size:clamp(26px,4vw,36px);">Share your thoughts</h2>
+    <p class="section-body" style="max-width:640px;">Want to help us learn more and show support? <a href="https://surveymonkey.com/placeholder" target="_blank" rel="noopener noreferrer" class="inline-link">Fill out the full survey here.</a></p>
+
+    <form id="comment-form" class="comment-form" onsubmit="submitComment(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First name <span class="req">*</span></label>
+          <input type="text" name="firstName" required />
+        </div>
+        <div class="form-field">
+          <label>Last name <span class="req">*</span></label>
+          <input type="text" name="lastName" required />
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" name="email" required />
+      </div>
+      <div class="form-field">
+        <label>Where do you live? <span class="req">*</span></label>
+        <input type="text" name="location" required />
+      </div>
+      <div class="form-field">
+        <label>What excites you most about Culdesac Mesa coming to downtown? <span class="req">*</span></label>
+        <textarea name="excitement" rows="3" required></textarea>
+      </div>
+      <div class="form-field">
+        <label>If you could tell Mesa City Council one thing about this project, what would you say? <span class="req">*</span></label>
+        <textarea name="message" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Submit Comment</button>
+    </form>
+    <div id="comment-success" class="comment-success" style="display:none;">✓ Thank you. We've received your comment and will include it in our community participation report.</div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
+
   <div class="footer-inner">
     <div>
       <div class="footer-logo">CULDESAC MESA</div>
@@ -926,7 +1020,7 @@
 
 <script>
   // Active nav tracking
-  const sections = ['hero','vision','involved','events','about','planned','interim','background','signup'];
+  const sections = ['hero','vision','involved','events','about','planned','interim','background','signup','quick-comment'];
   const navLinks = document.querySelectorAll('.nav-links a');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -964,6 +1058,12 @@
       document.getElementById('notify-success').style.display = 'block';
     }
   }
+  function submitComment(e) {
+    e.preventDefault();
+    document.getElementById('comment-form').style.display = 'none';
+    document.getElementById('comment-success').style.display = 'block';
+  }
+
   function submitInterest() {
     const email = document.getElementById('interest-email').value;
     if (email && email.includes('@')) {
