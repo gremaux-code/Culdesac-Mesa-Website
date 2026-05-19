@@ -362,8 +362,11 @@
       border-radius: 12px; overflow: hidden;
       border: 1px solid var(--sand-dark); background: var(--white);
     }
-    .map-frame img, .map-frame .placeholder {
-      width: 100%; height: clamp(220px, 28vw, 280px); object-fit: cover; display: block;
+    .map-frame img {
+      width: 100%; height: auto; display: block;
+    }
+    .map-frame .placeholder {
+      width: 100%; height: clamp(220px, 28vw, 280px); display: block;
     }
     .plans-disclaimer {
       font-size: 12px; font-style: italic;
@@ -745,7 +748,7 @@
 
     <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
       <a href="#quick-comment" class="btn-primary">Complete a quick survey</a>
-      <a href="mailto:livemesa@culdesac.com" class="btn-primary">Send an email</a>
+      <a href="mailto:live.mesa@culdesac.com" class="btn-primary">Send an email</a>
     </div>
   </div>
 </section>
@@ -787,9 +790,9 @@
           <div class="event-date">Monthly</div>
         </div>
         <div>
-          <h3>Petal House Happy Hours</h3>
-          <div class="event-location">📍 Petal House · Downtown Mesa</div>
-          <p class="desc">Casual, drop-in happy hours hosted by Petal House. Come meet the Culdesac team, ask questions, and chat about the project over a drink. Dates are announced to the project notifications list.</p>
+          <h3>Pedal House Happy Hours</h3>
+          <div class="event-location">📍 Pedal House · Downtown Mesa</div>
+          <p class="desc">Casual, drop-in happy hours hosted by Pedal House. Come meet the Culdesac team, ask questions, and chat about the project over a drink. Dates are announced to the project notifications list.</p>
         </div>
       </div>
     </div>
@@ -824,13 +827,14 @@
 
     <!-- Stats: horizontal scroll strip -->
     <div class="stats-scroll">
-      <div class="stat-chip"><span class="num">~1,000</span> <span class="label">homes</span></div>
-      <div class="stat-chip"><span class="num">140+</span> <span class="label">Phase 1 townhomes for sale</span></div>
-      <div class="stat-chip"><span class="num">50,000+</span> <span class="label">SF of shops &amp; restaurants</span></div>
-      <div class="stat-chip"><span class="num">1:1</span> <span class="label">parking space per home</span></div>
+      <div class="stat-chip">For-sale townhomes</div>
+      <div class="stat-chip">Various home types</div>
+      <div class="stat-chip">Parking for every home</div>
+      <div class="stat-chip">Neighborhood-scale shops &amp; restaurants</div>
     </div>
 
-    <!-- Accordion zones -->
+    <!-- Accordion zones (hidden temporarily) -->
+    <div style="display:none;">
     <h3 style="font-family:'Mainrope',sans-serif; font-size:24px; font-weight:500; color:var(--charcoal); margin:0 0 8px;">Three Neighborhood Zones</h3>
     <p style="font-size:14px; color:var(--warm-gray); margin:0 0 8px;">Tap to learn more</p>
 
@@ -874,6 +878,7 @@
           <div class="zone-body-inner">A higher-intensity district along University Drive that could support the long-term expansion of ASU's Mesa Campus, student housing, and complementary mixed-use development.</div>
         </div>
       </div>
+    </div>
     </div>
 
     <!-- Maps -->
@@ -950,6 +955,7 @@
           <div class="year">2030</div>
           <div class="event upcoming">Phase 1 townhomes delivered</div>
         </div>
+        <p style="font-size:11px;font-style:italic;color:#8A857F;margin-top:16px;padding-left:0;">*dates subject to change</p>
       </div>
     </div>
   </div>
@@ -1034,7 +1040,7 @@
       <div class="footer-logo">CULDESAC MESA</div>
       <div class="footer-info">
         A Culdesac neighborhood · Downtown Mesa, Arizona<br>
-        Questions? Email <a href="mailto:livemesa@culdesac.com">livemesa@culdesac.com</a>
+        Questions? Email <a href="mailto:live.mesa@culdesac.com">live.mesa@culdesac.com</a>
       </div>
     </div>
     <div class="footer-right">
