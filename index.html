@@ -268,33 +268,36 @@
 
     /* ---- PLANNED ---- */
     #planned { background: var(--sand); }
+    .planned-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: clamp(32px, 4vw, 48px);
+      align-items: center;
+    }
+    .planned-grid > * { min-width: 0; }
 
     /* Stats horizontal scroll */
     .stats-scroll {
-      display: flex; gap: 16px;
-      overflow-x: auto; scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 8px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
       margin: 32px 0 48px;
+      max-width: 580px;
     }
-    .stats-scroll::-webkit-scrollbar { display: none; }
     .stat-chip {
-      flex: 0 0 auto;
-      display: flex; align-items: baseline; gap: 8px;
-      padding: 12px 20px;
+      padding: 14px 18px;
       background: var(--white);
-      border-radius: 100px;
+      border-radius: 10px;
       border-left: 3px solid var(--sage);
-      scroll-snap-align: start;
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(13px, 1.4vw, 15px);
+      font-weight: 600;
+      color: var(--sage-dark);
+      line-height: 1.35;
       white-space: nowrap;
     }
-    .stat-chip .num {
-      font-family: 'Manrope', sans-serif;
-      font-size: clamp(18px, 2vw, 22px); font-weight: 600; color: var(--sage-dark);
-    }
-    .stat-chip .label {
-      font-size: clamp(12px, 1.2vw, 13px); color: var(--warm-gray);
+    @media (max-width: 380px) {
+      .stat-chip { white-space: normal; }
     }
 
     /* Accordion zones */
@@ -821,11 +824,21 @@
 <!-- WHAT'S PLANNED -->
 <section id="planned">
   <div class="container">
-    <div class="section-label">What's Planned</div>
-    <h2 class="section-heading">Human-scaled buildings that work with the neighborhood around them</h2>
-    <p class="section-body">Buildings start low along the southern edge, where townhomes match the scale of the historic homes just across the street. As you walk north toward University Drive, the streets fill in with apartments and places to gather. It's a gradual step up that lets the new neighborhood sit comfortably with the existing community.</p>
+    <div class="planned-grid">
+      <div>
+        <div class="section-label">What's Planned</div>
+        <h2 class="section-heading">Human-scaled buildings that work with the neighborhood around them</h2>
+        <p class="section-body">Buildings start low along the southern edge, where townhomes match the scale of the historic homes just across the street. As you walk north toward University Drive, the streets fill in with apartments and places to gather. It's a gradual step up that lets the new neighborhood sit comfortably with the existing community.</p>
+      </div>
+      <div>
+        <div class="map-label">Circulation Plan</div>
+        <div class="map-frame">
+          <img src="assets/culdesac-mesa-link-123.jpg" alt="Culdesac Mesa Circulation Plan" onerror="this.outerHTML='<div class=placeholder>Culdesac Mesa Circulation Plan</div>'" />
+        </div>
+      </div>
+    </div>
 
-    <!-- Stats: horizontal scroll strip -->
+    <!-- Stats: 2x2 grid -->
     <div class="stats-scroll">
       <div class="stat-chip">For-sale townhomes</div>
       <div class="stat-chip">Various home types</div>
@@ -881,15 +894,7 @@
     </div>
     </div>
 
-    <!-- Maps -->
-    <div class="maps-grid">
-      <div>
-        <div class="map-label">Circulation Plan</div>
-        <div class="map-frame">
-          <img src="assets/culdesac-mesa-link-123.jpg" alt="Culdesac Mesa Circulation Plan" onerror="this.outerHTML='<div class=placeholder>Culdesac Mesa Circulation Plan</div>'" />
-        </div>
-      </div>
-    </div>
+    
     <p class="plans-disclaimer">Plans are conceptual and subject to refinement through the community engagement and review process.</p>
   </div>
 </section>
